@@ -1,5 +1,58 @@
+/** Variables
+ 
+ *
+ */
+$header-top: 54px;
+$gutter: 16px;
 
-app-component {
-    display: block;
-    padding: 1em;
+
+/** Bootstrap overwrite
+ *
+ */
+.card-deck .card:not(:last-child) {
+    margin-right: 0!important;
 }
+/** Bootstrap break points;
+ *
+ */
+$break-sm: 576x;
+$break-md: 768px;
+$break-lg: 992px;
+$break-xl: 1200px;
+
+
+/** Layout
+ *
+ */
+
+section.content {
+    margin-top: $header-top + $gutter!important;
+    padding: 0 1em 1em;
+    @media all and ( min-width: $break-md ) {
+        margin: auto;
+        max-width: $break-lg;
+    }
+}
+
+
+
+/** Module
+ *
+ *
+ */
+@import 'header';
+
+
+ .card-columns {
+     column-gap: .8em!important;
+ }
+
+.card {
+    margin: 0 0 1em;
+    img {
+        width: 100%;
+    }
+}
+
+
+
