@@ -12,6 +12,8 @@ import { HelpPage } from '../pages/help/help';
 
 import { NoticeModalContent } from '../components/modals/notice/notice';
 
+import { PhilgoApiModule } from './../api/philgo-api/v2/philgo-api-module';
+import { PageScroll } from './../providers/page-scroll';
 const appRoutes: Routes = [
   { path: 'help', component: HelpPage },
   { path: '', component: HomePage }
@@ -28,10 +30,11 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot( appRoutes, { useHash: !history.pushState }),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    PhilgoApiModule
   ],
   bootstrap: [ AppComponent ],
-  providers: [ NgbActiveModal ],
+  providers: [ NgbActiveModal, PageScroll ],
   entryComponents: [ NoticeModalContent ]
 })
 export class AppModule {}

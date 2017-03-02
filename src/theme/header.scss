@@ -2,16 +2,61 @@
 
 /** */
 header {
+    color: white;
+    a {
+        color: white;
+        &:hover {
+            color: white;
+            text-decoration: none;
+        }
+    }
     nav {
         background-color: #7186a0;
         color: white;
     }
-    .post {
-        position: absolute;
-        top: .4em;
-        right: .4em;
-        width: 6em;
+
+
+    .logo {
+        .icon {
+            padding-top: .2em;
+            font-size: 2em;
+        }
+        .text {
+            margin-left: .4em;
+            font-size: 1.4em;
+        }
     }
+
+    .right {
+        text-align: right;
+    }
+
+    .right .wide {
+        a {
+            display: inline-block;
+            padding: .2em 1.2em;
+            border: 1px solid white;
+            border-radius: .14em;
+            &:hover {
+                color: #42556b;
+                background-color: white;
+            }
+        }
+    }
+
+
+    .right .narrow {
+        .text {
+            color: #42556b;
+        }
+        .sonub .text {
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+    }
+
+
+
 }
 .search {
     .more {

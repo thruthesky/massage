@@ -25,14 +25,7 @@ $break-xl: 1200px;
  *
  */
 
-section.content {
-    margin-top: $header-top + $gutter!important;
-    padding: 0 1em 1em;
-    @media all and ( min-width: $break-md ) {
-        margin: auto;
-        max-width: $break-lg;
-    }
-}
+
 
 
 
@@ -42,17 +35,15 @@ section.content {
  */
 @import 'header';
 
-
- .card-columns {
-     column-gap: .8em!important;
- }
-
-.card {
-    margin: 0 0 1em;
-    img {
-        width: 100%;
-    }
+section.content {
+    @import 'content';
 }
 
 
 
+
+.bottom-text {
+    margin: 1em 0;
+    text-align: center;
+    font-size: 2em;
+}
