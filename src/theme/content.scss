@@ -1,0 +1,65 @@
+& {
+    margin-top: $header-top + $gutter!important;
+    padding: 0 1em 1em;
+    word-break: break-all;
+    @media all and ( min-width: $break-md ) {
+        margin: auto;
+        max-width: $break-lg;
+    }
+}
+.card-columns {
+    column-gap: .8em!important;
+}
+
+.card {
+    margin: 0 0 1em;
+    cursor: pointer;
+    img {
+        width: 100%;
+    }
+}
+
+
+.card .card-block {
+    padding: .75em;
+}
+
+.card-title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.1em;
+}
+
+
+.ads {
+    .ad {
+        .headline {
+            margin: .2em 0;
+            padding: 1em;
+            background-color: #caca02;
+            .photo {
+                width: 64px;
+                height: 64px;
+                overflow: hidden;
+                float: left;
+                border-radius: 50%;
+                border: 2px solid white;
+                img {
+                    width: 100%;
+                }
+            }
+            .subject {
+                margin: .4em 0 0 74px;
+                @media all and ( min-width: $break-md ) {
+                    margin-top: 1.2em;
+                }
+            }
+        }
+        .info {
+            margin-bottom: .2em;
+            padding: 1em;
+            color: #494949;
+            background-color: #f3f3f3;
+        }
+    }
+}
