@@ -140,7 +140,7 @@ export class HomePage {
     post['active'] = false;
 
     post['subject_short'] = cut( post.subject, 35, '...' );
-    post['content_stripped_short'] = cut( post.content_stripped, 128, '...' );
+    post['content_stripped_short'] = cut( post['content_stripped'], 128, '...' );
 
 
     if ( post['varchar_8'] == 'Manila' ) post['varchar_8'] = '마닐라 / ';
