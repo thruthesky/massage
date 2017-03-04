@@ -1,3 +1,5 @@
+
+
 import { Component, NgZone } from '@angular/core';
 
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +16,7 @@ import { Post,
 
 
 import { PageScroll } from './../../providers/page-scroll';
-import { cut } from './../../etc/function';
+import { cut, array_chunk,is_cordova } from './../../etc/function';
 
 const POST_ID: string = 'massage';
 const LIMIT: number = 18;
@@ -25,13 +27,12 @@ const LIMIT: number = 18;
 })
 export class HomePage {
 
-  chunks = [];
-
+    chunks = [];
     noMorePosts: boolean = false;
     posts: POSTS = <POSTS> [];
-
     ads: ADS;
 
+    isCordova = is_cordova();
 
     constructor( 
         //private ngbModal: NgbModal
@@ -39,13 +40,9 @@ export class HomePage {
         private pageScroll: PageScroll,
         public post: Post
     ) {
-        
-
-
-
+      
         this.loadPage();
-        
-        
+
     }
 
 
@@ -84,7 +81,7 @@ export class HomePage {
 
       this.post.page( option, (page: PAGE) => { 
           this.inLoading = false;
-          this.ads = page.ads;
+          this.ads = array_chunk(page.ads, 3);
           //console.log(this.ads);
           if ( page.posts.length == 0 || page.posts.length < LIMIT ) {
             this.noMorePosts = true;

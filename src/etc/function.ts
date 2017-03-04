@@ -15,12 +15,11 @@
  * 
  * @code
       let ko = "가 가나 가나다라마바사아자차카타파하. 이것은 한글 문자입니다. 글 자르기 테스트입니다.";
-      console.log( cutBySpace( ko, 29, '...') );
+      console.log( cut_by_space( ko, 29, '...') );
  * @endcode
  * 
-
  */
-export function cutBySpace( str: string, length: number, padding: string = '' ) {
+export function cut_by_space( str: string, length: number, padding: string = '' ) {
 
     if ( ! str ) return '';
     if ( str.length <= length ) return str;
@@ -44,4 +43,46 @@ export function cut( str: string, length: number, padding: string = '' ) {
     if ( str.length <= length ) return str;
     
     return str.slice( 0, length ) + padding;
+}
+
+
+/**
+ * 
+ * 
+ * @param arr 
+ * @param n 
+ * 
+ * @code
+ *      console.log( array_chunk( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 2 ) );
+ * @result
+ *      [
+ *          [ 1, 2 ],
+ *          [ 3, 4 ],
+ *          [ 7, 8 ],
+ *          [ 9 ]
+ *      ]
+ * @endcode
+ * 
+ * @return Array
+ *          - new array.
+ *          - if the param 'arr' is not an array, it returns [].
+ */
+export function array_chunk( arr, n ) {
+    if ( ! Array.isArray( arr ) ) return [];
+    return arr.reduce( ( total, val, index ) => {
+        const chunk_index = Math.floor( index / n );
+        if ( ! total[ chunk_index ] ) total[ chunk_index ] = [];
+        total[ chunk_index ].push( val );
+        return total;
+    }, []);
+}
+
+
+/**
+ * 
+ */
+export function is_cordova() {
+    if ( !! window['cordova'] ) return true;
+    if ( document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1 ) return true;
+    return false;
 }

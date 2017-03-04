@@ -13,32 +13,28 @@
                     </a>
                 </td>
                 <td class="right">
-                    <div class="wide hidden-xs-down">
-                        <a class="post" href="http://philgo.com/?massage" target="_blank">
-                            마사지 업소 등록
-                        </a>
-                        <a href="https://www.sonub.com">SONUB</a>
-                    </div>
-
-
-                    <div class="narrow hidden-sm-up">
-       
-                        <a class="post" href="http://philgo.com/?massage" target="_blank">
-                            <span class="icon fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="text fa fa-pencil fa-stack-1x"></i>
-                            </span>
-                        </a>
-
-                        <a href="https://www.sonub.com" target="_blank">
-                            <span class="icon sonub fa-stack fa-lg">
+                    <ng-container *ngIf=" ! isCordova ">
+                        <div class="wide hidden-xs-down">
+                            <a class="post" href="http://philgo.com/?massage" target="_blank">
+                                마사지 업소 등록
+                            </a>
+                            <a href="http://hello.philgo.com">필고</a>
+                        </div>
+                        <div class="narrow hidden-sm-up">
+                            <a class="post" href="http://philgo.com/?massage" target="_blank">
+                                <span class="icon fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-stack-1x fa-inverse text">S</i>
-                            </span>
-                        </a>
-
-                    </div>
-
+                                <i class="text fa fa-pencil fa-stack-1x"></i>
+                                </span>
+                            </a>
+                            <a href="http://hello.philgo.com" target="_blank">
+                                <span class="icon sonub fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-stack-1x fa-inverse text">P</i>
+                                </span>
+                            </a>
+                        </div>
+                    </ng-container>
                 </td>
             </tr>
         </table>
@@ -47,40 +43,45 @@
 
 <section class="content">
 
-<div *ngFor=" let ad of ads " class="ads">
-    <div class="ad" [class.active]=" ad.active" (click)=" ad.active = true ">
-        <div class="headline clearfix">
-            <div *ngIf=" ad.no_of_first_image && ad.no_of_first_image != '0' " class="photo"><img src="{{ ad.src_thumbnail}}"></div>
-            <div class="subject">{{ ad.subject }}</div>
+
+<ng-container *ngFor=" let posts of chunks; let i = index">
+
+    <div class="ads" *ngIf=" ads[ i ] ">
+        
+
+        <div *ngFor=" let ad of ads[ i ] " class="ad" [class.active]=" ad.active" (click)=" ad.active = ! ad.active ">
+            <div class="headline clearfix">
+                <div *ngIf=" ad.no_of_first_image && ad.no_of_first_image != '0' " class="photo"><img src="{{ ad.src_thumbnail}}"></div>
+                <div class="subject">{{ ad.subject }}</div>
+            </div>
+            <div *ngIf=" ad.active " class="content">{{ ad.content_stripped }}</div>
+            <div *ngIf=" ad.active " class="info">
+                {{ ad.varchar_8 }}
+                {{ ad.varchar_2 }}
+                {{ ad.varchar_1 }}
+            </div>
         </div>
-        <div *ngIf=" ad.active " class="content">{{ ad.content_stripped }}</div>
-        <div *ngIf=" ad.active " class="info">
-            {{ ad.varchar_8 }}
-            {{ ad.varchar_2 }}
-            {{ ad.varchar_1 }}
+                
+        </div>
+        
+
+    <div class="card-deck">
+        <div class="card" *ngFor=" let post of posts " (click)=" post.active = true ">
+            <img *ngIf=" post.photos.length " class="card-img-top" src="{{ post.photos[0].url_thumbnail }}" alt="Massage App Image">
+            <div class="card-block">
+                <h4 *ngIf=" post.active == false " class="card-title">{{ post.subject_short }}</h4>
+                <p *ngIf=" post.active == false " class="card-text">{{ post.content_stripped_short }}</p>
+            
+                <h4 *ngIf=" post.active " class="card-title">{{ post.subject }}</h4>
+                <p *ngIf=" post.active " class="card-text">{{ post.content_stripped }}</p>
+            
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">{{ post.varchar_8 }} {{ post.varchar_1 }} TEL: {{ post.varchar_2 }}</small>
+            </div>
         </div>
     </div>
-</div>
-
-
-
-<div class="card-deck" *ngFor=" let posts of chunks; let i = index">
-    <div class="card" *ngFor=" let post of posts " (click)=" post.active = true ">
-        <img *ngIf=" post.photos.length " class="card-img-top" src="{{ post.photos[0].url_thumbnail }}" alt="Massage App Image">
-        <div class="card-block">
-            <h4 *ngIf=" post.active == false " class="card-title">{{ post.subject_short }}</h4>
-            <p *ngIf=" post.active == false " class="card-text">{{ post.content_stripped_short }}</p>
-        
-            <h4 *ngIf=" post.active " class="card-title">{{ post.subject }}</h4>
-            <p *ngIf=" post.active " class="card-text">{{ post.content_stripped }}</p>
-        
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">{{ post.varchar_8 }} {{ post.varchar_1 }} TEL: {{ post.varchar_2 }}</small>
-        </div>
-    </div>
-</div>
-
+</ng-container>
 
 
 <div class="bottom-text">
